@@ -64,4 +64,4 @@ class PSG_Calculator:
         spectrum = np.loadtxt('output.txt')
 
         print('Done')
-        return spectrum[:,0], spectrum[:,1]
+        return spectrum[:,0], spectrum[:,-2]
