@@ -29,14 +29,15 @@ class PSG_Calculator:
     def temp_to_orb(self):
         return (( (self.T_eq / (self.T_star*(1-self.albedo)**(0.25)) )**2 )*2/self.Rs )**(-1)
 
-    def run_PSG(self, T_eq=500, Mp=M_jup, Rp=R_jup, Rs=R_sun, albedo=0,
-    T_star=5777):
+    def run_PSG(self, T_eq=500, Mp=M_jup, Rp=R_jup, Rs=R_sun, albedo=0, T_star=5777,
+    resolution=200):
 
         self.Dp = 2*Rp/1000 # PSG takes diameter as input, in km
         self.albedo = albedo
         self.T_eq = T_eq
         self.T_star = T_star
         self.Rs = Rs
+        self.resolution = resolution
         # Find distance to parent star, in AU
         self.Orb_rad = self.temp_to_orb() * 6.68459e-12
 
@@ -45,6 +46,7 @@ class PSG_Calculator:
         self.config['<OBJECT-STAR-RADIUS>'][1] = str(self.Rs/R_sun)
         self.config['<OBJECT-STAR-DISTANCE>'][1] = str(self.Orb_rad)
         self.config['<SURFACE-ALBEDO>'][1] = str(self.albedo)
+        self.config['<GENERATOR-RESOLUTION>'][1] = str(self.resolution)
 
         with open(self.config_file,'w') as mod_config:
             for key in self.config.columns:
