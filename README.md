@@ -1,2 +1,2 @@
-# PSG_python (in dev)
+# pyPSG
 Wrapper code to run NASA's [Planetary Spectrum Generator](https://psg.gsfc.nasa.gov/) from Python.
